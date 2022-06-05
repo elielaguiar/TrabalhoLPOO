@@ -11,6 +11,7 @@
             -Autor
             -Editora
             -ISBN
+            -Tipo do livro
             - preço
             Obs: trazer cliente que estão esperando;
 
