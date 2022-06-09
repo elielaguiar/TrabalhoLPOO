@@ -12,7 +12,7 @@ abstract public class Livro {
     private double preco;
     private int paginas;
 
-    Livro(String nome, String editora,int ISBN,int anoPublicacao, int quantidade,double preco,int paginas){
+    public Livro(String nome, String editora,int ISBN,int anoPublicacao, int quantidade,double preco,int paginas){
         this.nome = nome;
         this.editora = editora;
         this.ISBN = ISBN;
@@ -22,13 +22,15 @@ abstract public class Livro {
         this.paginas = paginas;
     }
 
+    public Livro(String nome){
+        this.nome = nome;
+    }
+
     public String getNome(){
         return nome;
     }
 
-    Livro(String nome){
-        this.nome = nome;
-    }
+    
 
     // falta implementar a classe autor e seu get;
 
@@ -101,6 +103,19 @@ abstract public class Livro {
         quantidade += nQuantidade;
     }
 
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public boolean equals (Livro livro ) {
+        if(this.getNome() != livro.getNome())
+            return false;
+        if(this.getVolume() != livro.getVolume())
+            return false;
+        if(this.getTipo() != livro.getTipo())
+            return false;
+        return true;
+    }
 
 
 }

@@ -5,9 +5,8 @@ class Main{
     
     public static void main(String[] args){
 
-        leitura ler = new leitura();  
-        int opcao = ler.whileOpcao("Opção:",5, 10);
-        System.out.println(opcao);
+        Estante acao = new Estante("ação", 25);
+
         
 
     }
