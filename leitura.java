@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class leitura{
+public class Leitura{
     public int lerInteiro(String msn ){
         boolean ok = false;
         int i =0 ;

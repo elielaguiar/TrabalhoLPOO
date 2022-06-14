@@ -1,5 +1,4 @@
 public class Cliente extends Pessoa {
-    private String endereco;
     private int idade;
     private int telefone;
     private String email;
@@ -7,11 +6,23 @@ public class Cliente extends Pessoa {
     private String livrosComprados[];
     private int qtdComprados;
 
-    public Cliente(String nome, int CPF, int idade, String autorFavorito){
+    public Cliente(String nome, int CPF, int idade){
         super(nome, CPF);
         this.idade = idade;
-        this.autorFavorito = autorFavorito;
 
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public int getTelefone() {
+        return telefone;
+    }
+
+    public String toString() {
+        String string = super.toString();
+        return string+ " "+getTelefone()+" " +getEmail();
     }
 
     
