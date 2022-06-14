@@ -2,7 +2,7 @@ public class Autor extends Pessoa {
     private int qtdPublicados;
     private String tipoGenero;
 
-    public Autor(String nome, int CPF, String tipoGenero){
+    public Autor(String nome, String CPF, String tipoGenero){
         super(nome, CPF);
         this.tipoGenero = tipoGenero;
     }

@@ -1,20 +1,20 @@
 abstract public class Pessoa{
     private String nome;
-    private int CPF;
+    private String CPF;
 
     //abstract public String podeComprar();
     //abstract public boolean emiteNota();
 
-    public Pessoa(String nome, int CPF){
+    public Pessoa(String nome, String CPF){
         this.nome = nome;
         this.CPF = CPF;
     }
 
-    public void setCPF(int CPF){
+    public void setCPF(String CPF){
         this.CPF = CPF;
     }
 
-    public int getCPF(){
+    public String getCPF(){
         return CPF;
     }
 
