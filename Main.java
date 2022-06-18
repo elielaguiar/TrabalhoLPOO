@@ -9,6 +9,7 @@ public class Main{
         Leitura ler = new Leitura();
         Scanner string = new Scanner(System.in);
         ListaAutor clientes = new ListaAutor();
+        Cliente cliente ;
         int i = 0;
         String nome ,cpf,nasc,genero,dataNasc;
 
@@ -21,12 +22,17 @@ public class Main{
 
             if(i == 1){
                 
-                nome = ler.lerString("Nome:");
                 cpf = ler.validaCpf("CPF:");
-                nasc = ler.lerString("Data de nascimento:");
-                Cliente cliente = new Cliente(nome, cpf, nasc);
-                //fazer a compração se cliente já existe
-                System.out.println(clientes.add(cliente));
+                if(clientes.compara(cpf))
+                    System.out.println("Cliente já cadastrado");
+                else{
+                    System.out.print(clientes.compara(cpf));
+                    nome = ler.lerString("Nome:");
+                    nasc = ler.lerString("Data de nascimento:");
+                    cliente = new Cliente(nome, cpf, nasc);
+                    clientes.add(cliente);
+                }
+                
             };
             if(i == 2){
                 
@@ -47,8 +53,22 @@ public class Main{
 
             }
             if( i == 7){
-                Autor autor = new Autor("dav", "05843585123", "literatuda", "06/03/2003");
-                clientes.add(autor);
+                cpf = ler.validaCpf("CPF:");
+                if(clientes.compara(cpf)){
+                    System.out.println("Autor já cadastrado");
+                }
+                else{
+                    Cliente aux = clientes.retornaCliente(cpf);
+                    if(aux== null){
+                        nome = ler.lerString("Nome:");
+                        nasc = ler.lerString("Data de nascimento");
+                        aux = new Cliente(nome, cpf, nasc);
+                        clientes.add(aux); 
+                    }
+                    genero = ler.lerString("Genero Literário");
+                    Autor autor = new Autor(aux,genero);
+                    clientes.add(autor);
+                }
             }
         }
         while(i != 0);

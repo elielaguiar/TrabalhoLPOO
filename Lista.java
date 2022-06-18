@@ -4,25 +4,19 @@ import java.util.List;
 public class Lista {
     private List <Cliente> clientes= new ArrayList<Cliente>();
     
-    
-    
-
-    public boolean compara(Cliente obj){
+    public boolean compara(String cpf){
         boolean valor = false ;
         for (Cliente cliente : clientes) {
-            if( cliente.equals(obj))
+            if( cliente.getCPF().contains(cpf))
                 valor = true;
         }
         return valor;
-    
     }
 
-    public String add(Cliente obj){
-        if(!compara(obj)){
-            clientes.add(obj);
-            return "Cadastrado o Cliente";
-        }
-        return "Cadastro já existente com o mesmo cpf";
+   
+
+    public void add(Cliente obj){
+        clientes.add(obj);
     }
 
    
@@ -45,12 +39,14 @@ public class Lista {
     
     public Cliente retornaCliente(String cpf){
         for (Cliente cliente : clientes) {
-            if(cliente.getCPF() == cpf)
+            if(cliente.getCPF().contains(cpf))
                 return cliente;
             
         }
         return null;
     }
+
+
 
    
     
