@@ -7,7 +7,6 @@ public class Main{
     public static void main(String[] args) {
         
         Leitura ler = new Leitura();
-        Scanner string = new Scanner(System.in);
         ListaAutor clientes = new ListaAutor();
         Cliente cliente ;
         int i = 0;
@@ -26,7 +25,6 @@ public class Main{
                 if(clientes.compara(cpf))
                     System.out.println("Cliente já cadastrado");
                 else{
-                    System.out.print(clientes.compara(cpf));
                     nome = ler.lerString("Nome:");
                     nasc = ler.lerString("Data de nascimento:");
                     cliente = new Cliente(nome, cpf, nasc);
@@ -35,7 +33,16 @@ public class Main{
                 
             };
             if(i == 2){
-                
+                nome = ler.lerString("Nome:");
+                if(nome == ""){
+                    cpf = ler.validaCpf("CPF:");
+                    clientes.BuscarCPF(cpf);
+
+                }
+                else{
+                    clientes.Buscar(nome);
+                }
+
                 
             }
             if(i == 3){
@@ -54,7 +61,7 @@ public class Main{
             }
             if( i == 7){
                 cpf = ler.validaCpf("CPF:");
-                if(clientes.compara(cpf)){
+                if(clientes.comparaAutor(cpf)){
                     System.out.println("Autor já cadastrado");
                 }
                 else{

@@ -9,7 +9,7 @@ public class ListaAutor extends Lista {
         autores.add(obj);
     }
 
-    public boolean compara(String cpf){
+    public boolean comparaAutor(String cpf){
         boolean valor = false ;
         for (Autor autor : autores) {
             if( autor.getCPF().contains(cpf))

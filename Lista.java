@@ -30,10 +30,26 @@ public class Lista {
    
 
     public void Buscar(String nome){
+        boolean valor = false;
         for (Cliente cliente : clientes) {
-            if(cliente.getNome().contains(nome.toUpperCase())){
+            if(cliente.getNome().toUpperCase().contains(nome.toUpperCase())){
                 System.out.println(cliente);
+                valor = true;
                 }
+            }
+            if (!valor)
+                System.out.println("Nenhum registro,encontrado");
+        }
+
+        public void BuscarCPF(String cpf){
+            boolean valor = false;
+            for (Cliente cliente : clientes) {
+                if(cliente.getCPF().contains(cpf)){
+                    System.out.println(cliente);
+                    valor = true;
+                }
+            if(!valor)
+                System.out.println("Nenhum registro encontrado");
             }
         }
     
@@ -41,10 +57,11 @@ public class Lista {
         for (Cliente cliente : clientes) {
             if(cliente.getCPF().contains(cpf))
                 return cliente;
-            
         }
         return null;
     }
+
+   
 
 
 
