@@ -1,4 +1,6 @@
 import java.util.Scanner;
+
+
 public class Leitura{
     public int lerInteiro(String msn ){
         boolean ok = false;
@@ -44,4 +46,40 @@ public class Leitura{
         return cont ;
 
     }
+
+    public String validaCpf(String msn){
+        
+        String cpf = "";
+        boolean condicao = false;
+        
+        Scanner ler = new Scanner(System.in);
+        while(!condicao){
+            System.out.print(msn);
+            cpf = ler.nextLine();
+            cpf = cpf.replace(" ", "").replace(".", "").replace("-", "");
+            if(cpf.length()==11){
+                try{
+                    Double.parseDouble(cpf);
+                    condicao = true;
+                }
+                catch(NumberFormatException e){
+                    System.out.println("Parâmetro invalido,apenas números");
+                }
+            }
+            else{
+                System.out.println("Número do tamanho de padrão");
+            }
+        }
+        return cpf;
+        
+        }
+
+        public String lerString(String msn){
+            System.out.print(msn);
+            Scanner ler = new Scanner(System.in);
+            return ler.nextLine();
+            
+
+        }
+        
 }

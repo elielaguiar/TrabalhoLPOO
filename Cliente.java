@@ -1,28 +1,29 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cliente extends Pessoa {
 
-    private String endereco, email, autorFavorito, livrosComprados[];
-    private int telefone, qtdComprados;
+    private String   autorFavorito;
+    private List <Livro> livros = new ArrayList <Livro>(); // livros comprados
+    private int telefone;
 
-    public Cliente(String nome, String CPF, String autorFavorito){
-        super(nome, CPF);
-        this.autorFavorito = autorFavorito;
+    //public boolean emiteNota();
+    //public boolean compra(); 
+
+
+    public Cliente(String nome, String CPF, String dataNasc){
+        super(nome, CPF,dataNasc);      
     }
-
-    public Cliente(String nome, String CPF){
-        super(nome, CPF);      
-    }
-
-    public String getEmail() {
-        return email;
+    public void setTelefone(int telefone) {
+        this.telefone = telefone;
     }
 
     public int getTelefone() {
         return telefone;
     }
 
-    public String toString() {
-        String string = super.toString();
-        return string+ " "+getTelefone()+" " +getEmail();
+    public void setAutorFavorito(String autorFavorito) {
+        this.autorFavorito = autorFavorito;
     }
 
     

@@ -4,16 +4,14 @@ abstract public class Pessoa{
     private String CPF;
     private String dataNasc;
 
-    //abstract public String podeComprar();
-    //abstract public boolean emiteNota();
-
     public Pessoa(String nome){
         this.nome = nome;
     }
 
-    public Pessoa(String nome, String CPF){
+    public Pessoa(String nome, String CPF,String nas){
         this.nome = nome.toUpperCase();
         this.CPF = CPF;
+        this.dataNasc = nas;
     }
 
     public void setCPF(String CPF){
@@ -31,6 +29,12 @@ abstract public class Pessoa{
     public String getNome(){
         return nome;
     }
+
+    public String getDataNasc() {
+        return dataNasc;
+    }
+
+    
 
     public boolean equals(Pessoa pessoa) { // compara entre os objetos
         if(this.getCPF() == pessoa.getCPF()){

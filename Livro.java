@@ -4,27 +4,22 @@ abstract public class Livro {
     // criar lista de espera 
     private String editora;
     private int ISBN;
-    private int anoPublicacao;
     private String tipo; // não vai ser no construtor
     private int quantidade;
     private int volume;
     private String descricao; // implementado na abstração, não precisa ser no construtor
     private double preco;
-    private int paginas;
 
     public Livro(String nome, String editora,int ISBN,int anoPublicacao, int quantidade,double preco,int paginas){
         this.nome = nome;
         this.editora = editora;
         this.ISBN = ISBN;
-        this.anoPublicacao = anoPublicacao;
         this.quantidade = quantidade;
         this.preco = preco;
-        this.paginas = paginas;
+
     }
 
-    public Livro(String nome){
-        this.nome = nome;
-    }
+    
 
     public String getNome(){
         return nome;
@@ -70,9 +65,7 @@ abstract public class Livro {
         descricao = msn;
     }
 
-    protected void setVolume(int volume){
-        this.volume = volume; 
-    }
+    
 
     public int getVolume(){
         if(volume == 0 ){
@@ -82,7 +75,7 @@ abstract public class Livro {
     }
 
     public String getFicTecnica(){
-        return "ISBN:"+getISBN()+"\nEditora:"+getEditora()+"\nPáginas:"+this.paginas+"\nAno de publicação:"+this.anoPublicacao+"\nDisponível:"+this.quantidade+" em estoque\nVolume:"+this.volume;
+        return "ISBN:"+getISBN()+"\nEditora:"+getEditora()+"\nDisponível:"+this.quantidade+" em estoque\nVolume:"+this.volume;
     }
 
    
