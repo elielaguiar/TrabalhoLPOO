@@ -18,5 +18,23 @@ public class ListaAutor extends Lista {
         return valor;
     }
 
+    public void BuscarAutor(String nome){
+        boolean valor = false;
+        for (Autor autores : autores) {
+            if(autores.getNome().toUpperCase().contains(nome.toUpperCase())){
+                System.out.println(autores);
+                valor = true;
+                }
+            }
+            if (!valor)
+                System.out.println("Nenhum registro,encontrado");
+        }
+
+    public void ImprimeAutor(){
+        for (Autor autor : autores) {
+                System.out.println(autor.toString());
+        }
+       }
+
 
 }

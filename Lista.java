@@ -32,6 +32,7 @@ public class Lista {
     public void Buscar(String nome){
         boolean valor = false;
         for (Cliente cliente : clientes) {
+            
             if(cliente.getNome().toUpperCase().contains(nome.toUpperCase())){
                 System.out.println(cliente);
                 valor = true;

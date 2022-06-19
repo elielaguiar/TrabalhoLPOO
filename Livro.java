@@ -103,8 +103,6 @@ abstract public class Livro {
     public boolean equals (Livro livro ) {
         if(this.getNome() != livro.getNome())
             return false;
-        if(this.getVolume() != livro.getVolume())
-            return false;
         if(this.getTipo() != livro.getTipo())
             return false;
         return true;

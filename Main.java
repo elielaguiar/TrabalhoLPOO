@@ -1,5 +1,4 @@
 
-
 import java.util.Scanner;
 
 public class Main{
@@ -41,15 +40,22 @@ public class Main{
                 }
                 else{
                     clientes.Buscar(nome);
-                }
-
-                
+                } 
             }
             if(i == 3){
 
             }
 
             if (i == 4 ){
+                nome = ler.lerString("Nome:");
+                if(nome == ""){
+                    cpf = ler.validaCpf("CPF:");
+                    clientes.BuscarCPF(cpf);
+
+                }
+                else{
+                    clientes.BuscarAutor(nome);
+                } 
 
             }
 
@@ -57,7 +63,7 @@ public class Main{
 
             }
             if( i == 6){
-
+                
             }
             if( i == 7){
                 cpf = ler.validaCpf("CPF:");
