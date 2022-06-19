@@ -1,89 +1,115 @@
 
 import java.util.Scanner;
 
-public class Main{
+public class Main {
 
     public static void main(String[] args) {
-        
-        Leitura ler = new Leitura();
-        ListaAutor clientes = new ListaAutor();
-        Cliente cliente ;
-        int i = 0;
-        String nome ,cpf,nasc,genero,dataNasc;
 
-        
-        
-        do{
+        Leitura ler = new Leitura();
+        Lista clientes = new Lista();
+        ListaAutor autores = new ListaAutor();
+        Cliente cliente;
+        Autor autor;
+        int i = 0,quantidade;
+        double preco;
+        Scanner scanner = new Scanner(System.in);
+        String nome, cpf, nasc, genero, dataNasc,cod,nomeLivro,editora,tipoFicao,descricao;
+
+        do {
             System.out.println();
 
-            i = ler.lerInteiro("1 - Cadastrar cliente:\n2 - Procurar cadastro:\n3-Procurar Livro:\n4-Reservar Livro:\n4-Buscar autor:\n5-Comprar Livro:\n6-Cadastrar Livro:\n7- Cadastrar autor\nOpção:");
+            i = ler.lerInteiro(
+                    "1 - Cadastrar cliente:\n2 - Procurar cadastro:\n3-Procurar Livro:\n4-Buscar autor:\n5-Comprar Livro:\n6-Cadastrar Livro:\n7- Cadastrar autor\nOpção:");
 
-            if(i == 1){
-                
+            if (i == 1) {
+
                 cpf = ler.validaCpf("CPF:");
-                if(clientes.compara(cpf))
+                if (clientes.compara(cpf))
                     System.out.println("Cliente já cadastrado");
-                else{
+                else {
                     nome = ler.lerString("Nome:");
                     nasc = ler.lerString("Data de nascimento:");
                     cliente = new Cliente(nome, cpf, nasc);
                     clientes.add(cliente);
                 }
-                
-            };
-            if(i == 2){
+
+            }
+            ;
+            if (i == 2) {
                 nome = ler.lerString("Nome:");
-                if(nome == ""){
+                if (nome == "") {
                     cpf = ler.validaCpf("CPF:");
                     clientes.BuscarCPF(cpf);
 
-                }
-                else{
+                } else {
                     clientes.Buscar(nome);
-                } 
+                }
             }
-            if(i == 3){
+            if (i == 3) {
 
             }
 
-            if (i == 4 ){
+            if (i == 4) {
                 nome = ler.lerString("Nome:");
-                if(nome == ""){
+                if (nome == "") {
                     cpf = ler.validaCpf("CPF:");
-                    clientes.BuscarCPF(cpf);
+                    autores.BuscarCPF(cpf);
+                } else {
+                    autores.Buscar(nome);
+                }
 
+            }
+
+            if (i == 5) {
+
+            }
+            if (i == 6) {
+                cod = ler.lerString("Código do autor:");
+                autor = autores.BuscarCod(cod);
+                if(autor == null){
+                    System.out.println("Autor não encontrado");
                 }
                 else{
-                    clientes.BuscarAutor(nome);
-                } 
-
-            }
-
-            if( i == 5){
-
-            }
-            if( i == 6){
+                    nomeLivro = ler.lerString("Nome do livro");
+                    editora = ler.lerString("Editora");
+                    quantidade = ler.lerInteiro("Quantidade");
+                    System.out.print("Preço:");
+                    preco = scanner.nextDouble();
+                    System.out.println("1 - Ficção\n2 - Cíentifico");
+                    i = ler.whileOpcao("Opção", 1, 2);
+                    if(i == 1){
+                        tipoFicao = ler.lerString("Tipo de ficção");
+                        descricao = ler.lerString("Descrição");
+                        Ficcao ficcao = new Ficcao(nomeLivro, editora, quantidade, preco, autor, tipoFicao, descricao);
+                    }
+                    else{
+                        String esp , orgao, area;
+                        esp = ler.lerString("Especialidade:");
+                        orgao = ler.lerString("Orgão autorizado:");
+                        area = ler.lerString("Area:");
+                        Cientifico cientifico = new Cientifico(nomeLivro, editora, quantidade, preco, autor, esp, area, orgao);
+                    }
                 
-            }
-            if( i == 7){
-                cpf = ler.validaCpf("CPF:");
-                if(clientes.comparaAutor(cpf)){
-                    System.out.println("Autor já cadastrado");
                 }
-                else{
+
+            }
+            if (i == 7) {
+                cpf = ler.validaCpf("CPF:");
+                if (autores.comparaAutor(cpf)) {
+                    System.out.println("Autor já cadastrado");
+                } else {
                     Cliente aux = clientes.retornaCliente(cpf);
-                    if(aux== null){
+                    if (aux == null) {
                         nome = ler.lerString("Nome:");
                         nasc = ler.lerString("Data de nascimento");
                         aux = new Cliente(nome, cpf, nasc);
-                        clientes.add(aux); 
+                        clientes.add(aux);
                     }
                     genero = ler.lerString("Genero Literário");
-                    Autor autor = new Autor(aux,genero);
-                    clientes.add(autor);
+                    autor = new Autor(aux, genero);
+                    autores.add(autor);
                 }
             }
-        }
-        while(i != 0);
+        } while (i != 0);
     }
 }

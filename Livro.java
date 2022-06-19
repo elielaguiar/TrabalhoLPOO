@@ -6,16 +6,17 @@ abstract public class Livro {
     private int ISBN;
     private String tipo; // não vai ser no construtor
     private int quantidade;
+    private Autor autor;
     private int volume;
-    private String descricao; // implementado na abstração, não precisa ser no construtor
     private double preco;
 
-    public Livro(String nome, String editora,int ISBN,int anoPublicacao, int quantidade,double preco,int paginas){
+    public Livro(String nome, String editora, int quantidade,double preco, Autor autor){
         this.nome = nome;
         this.editora = editora;
-        this.ISBN = ISBN;
         this.quantidade = quantidade;
         this.preco = preco;
+        this.autor = autor;
+        this.tipo = autor.getGenero();
 
     }
 
@@ -55,17 +56,6 @@ abstract public class Livro {
         this.tipo = tipo;
         
     }
-
-
-    public String getDescricao(){
-        return descricao;
-    }
-
-    protected void setDescricao(String msn){
-        descricao = msn;
-    }
-
-    
 
     public int getVolume(){
         if(volume == 0 ){

@@ -1,20 +1,17 @@
 public class Ficcao  extends Livro{
     private String genero;
+    private String descricao;
 
-    Ficcao(String nome, String editora,int ISBN,int anoPublicacao, int quantidade,double preco,int paginas,String genero){
-        super(nome,editora,ISBN,anoPublicacao,quantidade,preco,paginas);
+    public Ficcao(String nome, String editora, int quantidade,double preco, Autor autor,String genero, String descricao){
+        super(nome, editora, quantidade,preco, autor);
+        this.descricao = descricao;
         this.genero = genero;
-        String tipo = "Ficção -"+genero;
-        setTipo(tipo);
-        
+
     }
 
-    public void setDescricao(String msn){
-        msn = msn+"\nNão cientifico\nGênreo:"+genero;
-        setDescricao(msn);
+    public String getDescricao() {
+        return descricao;
     }
-
-
 
     public String getGenero(){
         return genero;
