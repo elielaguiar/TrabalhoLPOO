@@ -4,39 +4,26 @@ import java.util.List;
 
 import Pessoa.Cliente;
 
-public class Lista {
-    private List<Cliente> clientes = new ArrayList<Cliente>();
+public class Lista extends Generico{
+    private List<Cliente> clientes = new ArrayList<>();
 
     public boolean compara(String cpf) {
-        boolean valor = false;
-        for (Cliente cliente : clientes) {
-            if (cliente.getCPF().contains(cpf))
-                valor = true;
-        }
-        return valor;
+        return super.compara(cpf, clientes);
     }
 
+    
     public void add(Cliente obj) {
         clientes.add(obj);
+    }
+
+    public void Buscar(String nome) {
+        super.Buscar(nome, clientes);
     }
 
     public void Imprime() {
         for (Cliente cliente : clientes) {
             System.out.println(cliente.toString());
         }
-    }
-
-    public void Buscar(String nome) {
-        boolean valor = false;
-        for (Cliente cliente : clientes) {
-
-            if (cliente.getNome().toUpperCase().contains(nome.toUpperCase())) {
-                System.out.println(cliente);
-                valor = true;
-            }
-        }
-        if (!valor)
-            System.out.println("Nenhum registro,encontrado");
     }
 
     public void BuscarCPF(String cpf) {

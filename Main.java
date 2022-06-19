@@ -4,7 +4,7 @@ import java.util.Scanner;
 import Lista.*;
 import Livro.*;
 import Pessoa.*;
-
+import Pessoa.*;
 
 public class Main {
 
@@ -135,7 +135,7 @@ public class Main {
             }
             if (i == 7) {
                 cpf = ler.validaCpf("CPF:");
-                if (autores.comparaAutor(cpf)) {
+                if (autores.compara(cpf)) {
                     System.out.println("Autor já cadastrado");
                 } else {
                     Cliente aux = clientes.retornaCliente(cpf);

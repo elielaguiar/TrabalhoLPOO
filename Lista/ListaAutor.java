@@ -4,8 +4,9 @@ import java.util.List;
 
 import Livro.Livro;
 import Pessoa.Autor;
+import Pessoa.Pessoa;
 
-public class ListaAutor {
+public class ListaAutor extends Generico{
 
     private List<Autor> autores = new ArrayList<Autor>();
     private Autor aux;
@@ -14,43 +15,17 @@ public class ListaAutor {
         autores.add(obj);
     }
 
-    public boolean comparaAutor(String cpf) {
-        boolean valor = false;
-        for (Autor autor : autores) {
-            if (autor.getCPF().contains(cpf))
-                valor = true;
-        }
-        return valor;
-    }
+   public boolean compara(String cpf) {
+       return super.compara(cpf, autores);
+   }
 
-    public void Buscar(String nome) {
-        boolean valor = false;
-        for (Autor autor : autores) {
-
-            if (autor.getNome().toUpperCase().contains(nome.toUpperCase())) {
-                System.out.println(autor);
-                valor = true;
-            }
-        }
-        if (!valor)
-            System.out.println("Nenhum registro,encontrado");
-    }
+   public void Buscar(String nome) {
+       super.Buscar(nome, autores);
+   }
 
     public void BuscarCPF(String cpf) {
-        boolean valor = false;
-        for (Autor autor : autores) {
-            if (autor.getCPF().contains(cpf)) {
-                System.out.println(autor);
-                List<Livro> livros = autor.getLivrospublicados();
-            for (Livro livro : livros) {
-                System.out.println(livro.getFicTecnica());
-            }
-                valor = true;
-            }
-        }
-        if (!valor) {
-            System.out.println("Nenhum registro encontrado");
-        }
+        Pessoa a  = super.BuscarCPF(cpf, autores);
+        
     }
 
     public Autor BuscarCod(String cod){
