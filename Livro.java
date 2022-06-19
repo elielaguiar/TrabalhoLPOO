@@ -1,42 +1,37 @@
 abstract public class Livro {
     private String nome;
-    //private Autor autor; implementar a classe
-    // criar lista de espera 
     private String editora;
-    private int ISBN;
-    private String tipo; // não vai ser no construtor
+    private String ISBN;
+    private String tipo; 
     private int quantidade;
     private Autor autor;
-    private int volume;
+
     private double preco;
 
     public Livro(String nome, String editora, int quantidade,double preco, Autor autor){
-        this.nome = nome;
-        this.editora = editora;
+        this.nome = nome.toUpperCase();
+        this.editora = editora.toUpperCase();
         this.quantidade = quantidade;
         this.preco = preco;
         this.autor = autor;
-        this.tipo = autor.getGenero();
+        this.tipo = autor.getGenero().toUpperCase();
+        setISBN();
 
     }
-
-    
 
     public String getNome(){
         return nome;
     }
 
-    
 
-    // falta implementar a classe autor e seu get;
+    public String getISBN(){
+        return ISBN;
 
-
-    public String getEditora(){
-        return editora;
     }
 
-    public int getISBN(){
-        return ISBN;
+    public void setISBN() {
+        int quantidade = getAutor().getPublicados();
+        this.ISBN = getAutor().getCod() + Integer.toString(quantidade);
 
     }
 
@@ -52,20 +47,12 @@ abstract public class Livro {
         return tipo;
     }
 
-    public void setTipo(String tipo){
-        this.tipo = tipo;
-        
-    }
-
-    public int getVolume(){
-        if(volume == 0 ){
-            volume = 1 ;
-        }
-        return volume;
+    public Autor getAutor() {
+        return autor;
     }
 
     public String getFicTecnica(){
-        return "ISBN:"+getISBN()+"\nEditora:"+getEditora()+"\nDisponível:"+this.quantidade+" em estoque\nVolume:"+this.volume;
+        return "Nome:"+getNome()+"\nISBN:"+getISBN()+"\nEditora:"+editora+"\nDisponível:"+this.quantidade+" em estoque";
     }
 
    

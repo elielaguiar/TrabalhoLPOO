@@ -26,6 +26,6 @@ public class Cientifico extends Livro {
 
 
     public String getFicTecnica() {
-        return super.getFicTecnica() + "\nAutorizada a venda pela"+getOrgao();
+        return super.getFicTecnica() + "\nAutorizada a venda pela :"+getOrgao()+"\nEspecialidade:"+ getEspecialidade() + "\nArea de atuação:"+ getArea();
     }
 }

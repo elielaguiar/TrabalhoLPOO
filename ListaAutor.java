@@ -37,6 +37,10 @@ public class ListaAutor {
         for (Autor autor : autores) {
             if (autor.getCPF().contains(cpf)) {
                 System.out.println(autor);
+                List<Livro> livros = autor.getLivrospublicados();
+            for (Livro livro : livros) {
+                System.out.println(livro.getFicTecnica());
+            }
                 valor = true;
             }
         }
@@ -56,6 +60,10 @@ public class ListaAutor {
     public void ImprimeAutor() {
         for (Autor autor : autores) {
             System.out.println(autor.toString());
+            List<Livro> livros = autor.getLivrospublicados();
+            for (Livro livro : livros) {
+                livro.getFicTecnica();
+            }
         }
     }
 

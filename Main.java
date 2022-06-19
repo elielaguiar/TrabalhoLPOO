@@ -8,6 +8,7 @@ public class Main {
         Leitura ler = new Leitura();
         Lista clientes = new Lista();
         ListaAutor autores = new ListaAutor();
+        ListaLivro livros = new ListaLivro();
         Cliente cliente;
         Autor autor;
         int i = 0,quantidade;
@@ -46,6 +47,13 @@ public class Main {
                 }
             }
             if (i == 3) {
+                nome = ler.lerString("Nome do livro:");
+                if (nome == "") {
+                    nome  = ler.lerString("Nome do Autor:");
+                    livros.BuscarAutor(nome);
+                } else {
+                    livros.BuscarNome(nome);
+                }
 
             }
 
@@ -61,7 +69,7 @@ public class Main {
             }
 
             if (i == 5) {
-
+                preco = ler.lerDouble("Preço:");
             }
             if (i == 6) {
                 cod = ler.lerString("Código do autor:");
@@ -73,22 +81,34 @@ public class Main {
                     nomeLivro = ler.lerString("Nome do livro");
                     editora = ler.lerString("Editora");
                     quantidade = ler.lerInteiro("Quantidade");
-                    System.out.print("Preço:");
-                    preco = scanner.nextDouble();
+                    
+                    preco = ler.lerDouble("Preço:");
+                    boolean valor;
                     System.out.println("1 - Ficção\n2 - Cíentifico");
                     i = ler.whileOpcao("Opção", 1, 2);
                     if(i == 1){
                         tipoFicao = ler.lerString("Tipo de ficção");
                         descricao = ler.lerString("Descrição");
-                        Ficcao ficcao = new Ficcao(nomeLivro, editora, quantidade, preco, autor, tipoFicao, descricao);
+                        Ficcao livro = new Ficcao(nomeLivro, editora, quantidade, preco, autor, tipoFicao, descricao);
+                        valor = livros.add(livro);
                     }
                     else{
                         String esp , orgao, area;
                         esp = ler.lerString("Especialidade:");
                         orgao = ler.lerString("Orgão autorizado:");
                         area = ler.lerString("Area:");
-                        Cientifico cientifico = new Cientifico(nomeLivro, editora, quantidade, preco, autor, esp, area, orgao);
+                        Cientifico livro = new Cientifico(nomeLivro, editora, quantidade, preco, autor, esp, area, orgao);
+                        valor = livros.add(livro);
                     }
+                    if(valor){
+                        System.out.println("Não cadastrado , livro já existente no acervo");
+                    }
+                    else{
+                        System.out.println("Livro cadastrado com sucesso");
+                    }
+    
+                    
+
                 
                 }
 

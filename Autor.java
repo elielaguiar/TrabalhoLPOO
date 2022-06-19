@@ -1,13 +1,12 @@
-import java.lang.reflect.Array;
-import java.util.Random;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Autor extends Pessoa {
-    private int qtdPublicados;
+    private int qtdPublicados = 0;
     private String tipoGenero;
-    private List<Livro> livrospublicados = new ArrayList<Livro>();
+    private List<Livro> livrospublicados = new ArrayList<>();
     private static int id  = 1000;
     private String  cod ;
 
@@ -45,6 +44,16 @@ public class Autor extends Pessoa {
    
     public String toString() {
         return super.toString()+"\nGênero:"+getGenero()+"\nCódigo:"+getCod();
+    }
+
+    public void addLivro(Livro qualquer){
+        qtdPublicados ++;
+        livrospublicados.add(qualquer);
+        
+    }
+
+    public List<Livro> getLivrospublicados() {
+        return livrospublicados;
     }
         
 

@@ -16,4 +16,9 @@ public class Ficcao  extends Livro{
     public String getGenero(){
         return genero;
     }
+
+    public String getFicTecnica() {
+        return super.getFicTecnica()
+        +"\nDescrição:"+getDescricao()+"\nGênero:"+getGenero();
+    }
 }

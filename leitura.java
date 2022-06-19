@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -78,8 +79,26 @@ public class Leitura{
             System.out.print(msn);
             Scanner ler = new Scanner(System.in);
             return ler.nextLine();
-            
 
+        }
+
+        public double lerDouble(String msn){
+            System.out.print(msn);
+            boolean valor = false;
+            Scanner ler = new Scanner(System.in);
+            double x =0 ;
+            do{
+                
+                try{
+                    x = ler.nextDouble();
+                    valor = true;
+                }catch(InputMismatchException obj){
+                    System.out.println("Separador de decimal é a virgula");
+                    
+                }
+                
+            }while(valor==false);
+        return x;
         }
         
 }
