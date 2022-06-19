@@ -1,3 +1,6 @@
+package Livro;
+import Pessoa.Autor;
+
 public class Ficcao  extends Livro{
     private String genero;
     private String descricao;

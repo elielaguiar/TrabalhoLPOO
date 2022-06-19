@@ -1,3 +1,6 @@
+package Livro;
+import Pessoa.Autor;
+
 public class Cientifico extends Livro {
     private String especialidade;
     private String area ;

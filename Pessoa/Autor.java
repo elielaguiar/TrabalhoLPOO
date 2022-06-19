@@ -1,7 +1,10 @@
+package Pessoa;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Livro.Livro;
 
 public class Autor extends Pessoa {
     private int qtdPublicados = 0;

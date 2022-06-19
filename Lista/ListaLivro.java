@@ -1,5 +1,9 @@
+package Lista;
 import java.util.ArrayList;
 import java.util.List;
+
+import Livro.Livro;
+import Pessoa.Autor;
 
 public class ListaLivro {
     List <Livro> livros = new ArrayList<>();

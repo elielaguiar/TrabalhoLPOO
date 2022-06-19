@@ -1,3 +1,6 @@
+package Livro;
+import Pessoa.Autor;
+
 abstract public class Livro {
     private String nome;
     private String editora;

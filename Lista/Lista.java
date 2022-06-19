@@ -1,5 +1,8 @@
+package Lista;
 import java.util.ArrayList;
 import java.util.List;
+
+import Pessoa.Cliente;
 
 public class Lista {
     private List<Cliente> clientes = new ArrayList<Cliente>();

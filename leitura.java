@@ -1,6 +1,8 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import Livro.Livro;
+
 
 public class Leitura{
     public int lerInteiro(String msn ){

@@ -1,6 +1,11 @@
 
 import java.util.Scanner;
 
+import Lista.*;
+import Livro.*;
+import Pessoa.*;
+
+
 public class Main {
 
     public static void main(String[] args) {
