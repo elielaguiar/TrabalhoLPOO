@@ -113,18 +113,4 @@ public class Leitura {
         return y;
     }
 
-    public int lerQuantidade(String msn, Livro livro) {
-        boolean valor = false;
-        int i = 0;
-        do {
-            i = lerInteiro(msn);
-            if (livro.getQuantidade() >= i && i > 0) {
-                valor = true;
-            } else {
-                System.out.println("Quantidade indisponível");
-            }
-        } while (!valor);
-        return i;
-    }
-
 }

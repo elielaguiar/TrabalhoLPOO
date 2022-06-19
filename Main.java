@@ -29,7 +29,11 @@ public class Main {
                 if (clientes.compara(cpf))
                     System.out.println("Cliente já cadastrado");
                 else {
-
+                    nome = ler.lerString("Nome:");
+                    nasc = ler.lerString("Data de nascimento");
+                    telefone = ler.lerString("Telefone");
+                    cliente = new Cliente(nome, cpf, nasc, telefone);
+                    clientes.add(cliente);
                 }
 
             }
