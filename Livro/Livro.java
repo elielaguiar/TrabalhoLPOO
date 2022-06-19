@@ -57,6 +57,9 @@ abstract public class Livro {
     public String getFicTecnica(){
         return "Nome:"+getNome()+"\nISBN:"+getISBN()+"\nEditora:"+editora+"\nDisponível:"+this.quantidade+" em estoque";
     }
+    public String getFicTecnicaBusca(){
+        return "Nome:"+getNome()+"\nISBN:"+getISBN()+"\nEditora:"+editora+"\nAutor:"+getAutor().getNome();
+    }
 
 
     public boolean decrementarQuantidade(int nQuantidade){

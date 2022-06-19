@@ -1,9 +1,9 @@
 
 import java.util.Scanner;
 
+import Auxiadores.Leitura;
 import Lista.*;
 import Livro.*;
-import Pessoa.*;
 import Pessoa.*;
 
 public class Main {
@@ -16,10 +16,10 @@ public class Main {
         ListaLivro livros = new ListaLivro();
         Cliente cliente;
         Autor autor;
-        int i = 0,quantidade;
+        int i = 0, quantidade;
         double preco;
-        Scanner scanner = new Scanner(System.in);
-        String nome, cpf, nasc, genero, dataNasc,cod,nomeLivro,editora,tipoFicao,descricao;
+
+        String nome, cpf, nasc, genero, dataNasc, cod, nomeLivro, editora, tipoFicao, descricao;
 
         do {
             System.out.println();
@@ -54,7 +54,7 @@ public class Main {
             if (i == 3) {
                 nome = ler.lerString("Nome do livro:");
                 if (nome == "") {
-                    nome  = ler.lerString("Nome do Autor:");
+                    nome = ler.lerString("Nome do Autor:");
                     livros.BuscarAutor(nome);
                 } else {
                     livros.BuscarNome(nome);
@@ -75,61 +75,45 @@ public class Main {
 
             if (i == 5) {
                 nome = ler.lerString("ISBN do livro");
-                Livro livro = livros.BuscarISBN(nome);
-                if(livro!= null){
-                    cpf = ler.validaCpf("CPF");
-                    cliente = clientes.retornaCliente(cpf);
-                    if(cliente != null){
-                        quantidade = ler.lerQuantidade("Quantidade", livro);
-                        livro.decrementarQuantidade(quantidade);
-                        System.out.println("Compra realizada com sucesso");
-                    }
-                    else{
-                        System.out.println("Cliente não encontrado");
-                    }
-                }else{
-                    System.out.println("Livro não encontrado");
-                }
+                cpf = ler.validaCpf("CPF");
+                cliente = clientes.retornaCliente(cpf);
+                quantidade = ler.lerInteiro("Quantidade desejada");
+                System.out.println(livros.compra(nome, cpf, quantidade, cliente));
             }
             if (i == 6) {
                 cod = ler.lerString("Código do autor:");
                 autor = autores.BuscarCod(cod);
-                if(autor == null){
+                if (autor == null) {
                     System.out.println("Autor não encontrado");
-                }
-                else{
+                } else {
                     nomeLivro = ler.lerString("Nome do livro");
                     editora = ler.lerString("Editora");
                     quantidade = ler.lerInteiro("Quantidade");
-                    
+
                     preco = ler.lerDouble("Preço:");
                     boolean valor;
                     System.out.println("1 - Ficção\n2 - Cíentifico");
                     i = ler.whileOpcao("Opção", 1, 2);
-                    if(i == 1){
+                    if (i == 1) {
                         tipoFicao = ler.lerString("Tipo de ficção");
                         descricao = ler.lerString("Descrição");
                         Ficcao livro = new Ficcao(nomeLivro, editora, quantidade, preco, autor, tipoFicao, descricao);
                         valor = livros.add(livro);
-                    }
-                    else{
-                        String esp , orgao, area;
+                    } else {
+                        String esp, orgao, area;
                         esp = ler.lerString("Especialidade:");
                         orgao = ler.lerString("Orgão autorizado:");
                         area = ler.lerString("Area:");
-                        Cientifico livro = new Cientifico(nomeLivro, editora, quantidade, preco, autor, esp, area, orgao);
+                        Cientifico livro = new Cientifico(nomeLivro, editora, quantidade, preco, autor, esp, area,
+                                orgao);
                         valor = livros.add(livro);
                     }
-                    if(valor){
+                    if (valor) {
                         System.out.println("Não cadastrado , livro já existente no acervo");
-                    }
-                    else{
+                    } else {
                         System.out.println("Livro cadastrado com sucesso");
                     }
-    
-                    
 
-                
                 }
 
             }
@@ -150,6 +134,9 @@ public class Main {
                     autores.add(autor);
                 }
             }
+            Livro livro = null;
+            
+            
         } while (i != 0);
     }
 }

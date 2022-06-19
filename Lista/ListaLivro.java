@@ -1,91 +1,97 @@
 package Lista;
+
 import java.util.ArrayList;
 import java.util.List;
-
+import Auxiadores.*;
 import Livro.Livro;
-import Pessoa.Autor;
+import Pessoa.*;
+
 
 public class ListaLivro {
-    List <Livro> livros = new ArrayList<>();
-    List <Livro> livrosVazios = new ArrayList<>();
+    List<Livro> livros = new ArrayList<>();
+    List<Livro> livrosVazios = new ArrayList<>();
 
-    public boolean add(Livro obj){
+    public boolean add(Livro obj) {
         boolean valor = false;
-        if(!valor){
+        if (!valor) {
             livros.add(obj);
             listaAutor(obj.getAutor(), obj);
         }
-            
+
         return valor;
     }
 
-   public boolean compara(Livro qualquer){
-    boolean valor = false;
-    for (Livro livro : livros) {
-        if(livro.equals(qualquer))
-            valor = true;
+    public boolean compara(Livro qualquer) {
+        boolean valor = false;
+        for (Livro livro : livros) {
+            if (livro.equals(qualquer))
+                valor = true;
+        }
+        for (Livro livro : livrosVazios) {
+            if (livro.equals(qualquer))
+                valor = true;
+        }
+        return valor;
     }
-    for (Livro livro : livrosVazios) {
-        if(livro.equals(qualquer))
-            valor = true;
+
+    private void listaAutor(Autor qualquer, Livro livro) {
+        qualquer.addLivro(livro);
     }
-    return valor;
-   }
 
-
-   private void listaAutor(Autor qualquer,Livro livro){
-    qualquer.addLivro(livro);
-   }
-
-   private void livrosVazios(Livro qualquer){
-    if(qualquer.getQuantidade() == 0){
-        livrosVazios.add(qualquer);
-        livros.remove(qualquer);
-    }
-   }
-
-   public void BuscarNome(String nome){
-    boolean valor = false;
-    for (Livro livro : livros) {
-        if(livro.getNome().contains(nome.toUpperCase())){
-            valor = true;
-            System.out.println(livro.getFicTecnica());
+    private void livrosVazios(Livro qualquer) {
+        if (qualquer.getQuantidade() == 0) {
+            livrosVazios.add(qualquer);
+            livros.remove(qualquer);
         }
     }
-    if(!valor){
-        System.out.println("Nenhum cadastro encontrado");
+
+    public void BuscarNome(String nome) {
+        boolean valor = false;
+        for (Livro livro : livros) {
+            if (livro.getNome().contains(nome.toUpperCase())) {
+                valor = true;
+                System.out.println(livro.getFicTecnica());
+            }
+        }
+        if (!valor) {
+            System.out.println("Nenhum cadastro encontrado");
+        }
+
     }
 
-   }
-
-   public void BuscarAutor(String nomeAutor){
-    boolean valor = false;
-    for (Livro livro : livros) {
-        if(livro.getAutor().getNome().contains(nomeAutor.toUpperCase())){
-            System.out.println(livro.getFicTecnica());
+    public void BuscarAutor(String nomeAutor) {
+        boolean valor = false;
+        for (Livro livro : livros) {
+            if (livro.getAutor().getNome().contains(nomeAutor.toUpperCase())) {
+                System.out.println(livro.getFicTecnica());
+            }
+        }
+        if (!valor) {
+            System.out.println("Nenhum cadastro encontrado");
         }
     }
-    if(!valor){
-        System.out.println("Nenhum cadastro encontrado");
-    }
-   }
 
-   public Livro BuscarISBN(String IBSN){
-    Livro valor = null;
-    for (Livro livro : livros) {
-        if(livro.getISBN().contains(IBSN.toUpperCase())){
-            valor = livro;
+    public Livro BuscarISBN(String IBSN) {
+        Livro valor = null;
+        for (Livro livro : livros) {
+            if (livro.getISBN().contains(IBSN.toUpperCase())) {
+                valor = livro;
+            }
         }
+        return valor;
     }
-    return valor;
+
+    public String compra(String ISBN, String cpf, int quantidade,Cliente cliente) {
+        Livro livro = BuscarISBN(ISBN);
+        if (livro == null) 
+            return "Livro não encontrado";
+        if (cliente == null) 
+            return "Cliente não encontrado";
+        if(!livro.decrementarQuantidade(quantidade))
+            return "Compra cancelada ,quantidade maior do que no estoque";
+        cliente.add(livro);
+        livrosVazios(livro);
+        return "Compra realizada com sucesso";
     }
 
-
-
-
-    
-
-
-
-    
 }

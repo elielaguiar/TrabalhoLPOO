@@ -6,8 +6,7 @@ import Livro.Livro;
 
 public class Cliente extends Pessoa {
 
-    private String   autorFavorito;
-    private List <Livro> livros = new ArrayList <Livro>(); // livros comprados
+    private List <Livro> livros = new ArrayList <>(); // livros comprados
     private int telefone;
 
     //public boolean emiteNota();
@@ -25,8 +24,24 @@ public class Cliente extends Pessoa {
         return telefone;
     }
 
-    public void setAutorFavorito(String autorFavorito) {
-        this.autorFavorito = autorFavorito;
+    
+
+    public void add(Livro livro){
+        livros.add(livro);
+    }
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public String toString() {
+        String b  = super.toString()+"\nTelefone:"+getTelefone();
+        System.out.println("Livros comprados por : "+getNome()+"\n");
+        for (Livro livro : livros) {
+
+            System.out.println(livro.getFicTecnicaBusca());
+        }
+        return b;
     }
 
     

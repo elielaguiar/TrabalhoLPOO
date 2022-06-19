@@ -45,7 +45,7 @@ abstract public class Pessoa{
     }
 
     public String toString() {
-        String string = "Nome:" +getNome()+"\nCPF:"+getCPF();
+        String string = "Nome:" +getNome()+"\nCPF:"+getCPF()+"\nData de nascimento:"+getDataNasc();
         return string;
     }
 

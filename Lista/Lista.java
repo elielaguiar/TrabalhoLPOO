@@ -30,7 +30,7 @@ public class Lista extends Generico{
         boolean valor = false;
         for (Cliente cliente : clientes) {
             if (cliente.getCPF().contains(cpf)) {
-                System.out.println(cliente);
+                System.out.println(cliente.toString());
                 valor = true;
             }
             if (!valor)
@@ -45,5 +45,7 @@ public class Lista extends Generico{
         }
         return null;
     }
+
+    
 
 }

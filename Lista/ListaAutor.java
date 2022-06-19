@@ -4,7 +4,6 @@ import java.util.List;
 
 import Livro.Livro;
 import Pessoa.Autor;
-import Pessoa.Pessoa;
 
 public class ListaAutor extends Generico{
 
@@ -24,8 +23,20 @@ public class ListaAutor extends Generico{
    }
 
     public void BuscarCPF(String cpf) {
-        Pessoa a  = super.BuscarCPF(cpf, autores);
-        
+        boolean valor = false;
+        for (Autor autor : autores) {
+            if (autor.getCPF().contains(cpf)) {
+                System.out.println(autor);
+                List<Livro> livros = autor.getLivrospublicados();
+            for (Livro livro : livros) {
+                System.out.println(livro.getFicTecnica());
+            }
+                valor = true;
+            }
+        }
+        if (!valor) {
+            System.out.println("Nenhum registro encontrado");
+        }
     }
 
     public Autor BuscarCod(String cod){
