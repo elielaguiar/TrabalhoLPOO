@@ -1,6 +1,6 @@
 public class Excecoes extends RuntimeException {
     public String ValoresNegativos(){
-        return "Não são permitidos valores negativos";
+        return "Não são permitidos valores negativos e nulos";
     }
 
     public String ForaDaOpcao(){

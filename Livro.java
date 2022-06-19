@@ -55,11 +55,6 @@ abstract public class Livro {
         return "Nome:"+getNome()+"\nISBN:"+getISBN()+"\nEditora:"+editora+"\nDisponível:"+this.quantidade+" em estoque";
     }
 
-   
-
-    public void decrementarQuantidade(){
-        quantidade --;
-    }
 
     public boolean decrementarQuantidade(int nQuantidade){
         if ((quantidade - nQuantidade)  >= 0){

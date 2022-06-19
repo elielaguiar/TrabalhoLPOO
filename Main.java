@@ -69,7 +69,22 @@ public class Main {
             }
 
             if (i == 5) {
-                preco = ler.lerDouble("Preço:");
+                nome = ler.lerString("ISBN do livro");
+                Livro livro = livros.BuscarISBN(nome);
+                if(livro!= null){
+                    cpf = ler.validaCpf("CPF");
+                    cliente = clientes.retornaCliente(cpf);
+                    if(cliente != null){
+                        quantidade = ler.lerQuantidade("Quantidade", livro);
+                        livro.decrementarQuantidade(quantidade);
+                        System.out.println("Compra realizada com sucesso");
+                    }
+                    else{
+                        System.out.println("Cliente não encontrado");
+                    }
+                }else{
+                    System.out.println("Livro não encontrado");
+                }
             }
             if (i == 6) {
                 cod = ler.lerString("Código do autor:");

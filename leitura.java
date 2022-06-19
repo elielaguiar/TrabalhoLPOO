@@ -11,7 +11,7 @@ public class Leitura{
             Scanner ler = new Scanner(System.in);
             try{
                 i = ler.nextInt();
-                if(i < 0){
+                if(i <= 0){
                     throw new Excecoes();
                 }
                 ok = true;
@@ -99,6 +99,21 @@ public class Leitura{
                 
             }while(valor==false);
         return x;
+        }
+
+        public int lerQuantidade(String msn ,Livro livro){
+            boolean valor = false;
+            int i = 0 ;
+            do{
+                i = lerInteiro(msn);
+                if(livro.getQuantidade() >= i && i > 0){
+                    valor = true;
+                }
+                else{
+                    System.out.println("Quantidade indisponível");
+                }
+            }while(!valor);
+            return i;
         }
         
 }

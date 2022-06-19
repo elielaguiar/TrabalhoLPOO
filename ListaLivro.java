@@ -66,6 +66,16 @@ public class ListaLivro {
     }
    }
 
+   public Livro BuscarISBN(String IBSN){
+    Livro valor = null;
+    for (Livro livro : livros) {
+        if(livro.getISBN().contains(IBSN.toUpperCase())){
+            valor = livro;
+        }
+    }
+    return valor;
+    }
+
 
 
 
