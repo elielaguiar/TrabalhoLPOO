@@ -2,17 +2,17 @@ package Lista;
 
 import java.util.ArrayList;
 import java.util.List;
-import Auxiadores.*;
+
 import Livro.Livro;
 import Pessoa.*;
 
 
-public class ListaLivro {
+public class ListaLivro implements Cloneable {
     List<Livro> livros = new ArrayList<>();
     List<Livro> livrosVazios = new ArrayList<>();
 
     public boolean add(Livro obj) {
-        boolean valor = false;
+        boolean valor = compara(obj);
         if (!valor) {
             livros.add(obj);
             listaAutor(obj.getAutor(), obj);
@@ -42,6 +42,13 @@ public class ListaLivro {
         if (qualquer.getQuantidade() == 0) {
             livrosVazios.add(qualquer);
             livros.remove(qualquer);
+        }
+    }
+
+    private void livrosCompletos(Livro qualquer){
+        if(qualquer.getQuantidade() > 0){
+            livros.add(qualquer);
+            livrosVazios.remove(qualquer);
         }
     }
 
@@ -81,6 +88,21 @@ public class ListaLivro {
         return valor;
     }
 
+    public Livro BuscarISBNeNulos(String IBSN) {
+        Livro valor = null;
+        for (Livro livro : livros) {
+            if (livro.getISBN().contains(IBSN.toUpperCase())) {
+                valor = livro;
+            }
+        }
+        for (Livro livro : livrosVazios) {
+            if (livro.getISBN().contains(IBSN.toUpperCase())) {
+                valor = livro;
+            }
+        }
+        return valor;
+    }
+
     public String compra(String ISBN, String cpf, int quantidade,Cliente cliente) {
         Livro livro = BuscarISBN(ISBN);
         if (livro == null) 
@@ -89,9 +111,15 @@ public class ListaLivro {
             return "Cliente não encontrado";
         if(!livro.decrementarQuantidade(quantidade))
             return "Compra cancelada ,quantidade maior do que no estoque";
-        cliente.add(livro);
+        cliente.add(livro );
         livrosVazios(livro);
         return "Compra realizada com sucesso";
+    }
+
+    public void incrementaQuantidade(Livro livro, int newQuant){
+        livro.incrementaQuantidade(newQuant);
+        livrosCompletos(livro);
+
     }
 
 }

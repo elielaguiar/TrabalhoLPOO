@@ -1,13 +1,9 @@
-
-import java.util.Scanner;
-
 import Auxiadores.Leitura;
 import Lista.*;
 import Livro.*;
 import Pessoa.*;
 
 public class Main {
-
     public static void main(String[] args) {
 
         Leitura ler = new Leitura();
@@ -19,13 +15,13 @@ public class Main {
         int i = 0, quantidade;
         double preco;
 
-        String nome, cpf, nasc, genero, dataNasc, cod, nomeLivro, editora, tipoFicao, descricao;
+        String nome, cpf, nasc, genero, cod, nomeLivro, editora, tipoFicao, descricao, telefone;
 
         do {
             System.out.println();
 
             i = ler.lerInteiro(
-                    "1 - Cadastrar cliente:\n2 - Procurar cadastro:\n3-Procurar Livro:\n4-Buscar autor:\n5-Comprar Livro:\n6-Cadastrar Livro:\n7- Cadastrar autor\nOpção:");
+                    "1 - Cadastrar cliente:\n2 - Procurar cadastro:\n3-Procurar Livro:\n4-Buscar autor:\n5-Comprar Livro:\n6-Cadastrar Livro:\n7- Cadastrar autor\n8 - Atualizar Dados Livro:\nOpção:");
 
             if (i == 1) {
 
@@ -33,10 +29,7 @@ public class Main {
                 if (clientes.compara(cpf))
                     System.out.println("Cliente já cadastrado");
                 else {
-                    nome = ler.lerString("Nome:");
-                    nasc = ler.lerString("Data de nascimento:");
-                    cliente = new Cliente(nome, cpf, nasc);
-                    clientes.add(cliente);
+
                 }
 
             }
@@ -126,7 +119,8 @@ public class Main {
                     if (aux == null) {
                         nome = ler.lerString("Nome:");
                         nasc = ler.lerString("Data de nascimento");
-                        aux = new Cliente(nome, cpf, nasc);
+                        telefone = ler.lerString("Telefone");
+                        aux = new Cliente(nome, cpf, nasc, telefone);
                         clientes.add(aux);
                     }
                     genero = ler.lerString("Genero Literário");
@@ -134,9 +128,26 @@ public class Main {
                     autores.add(autor);
                 }
             }
-            Livro livro = null;
-            
-            
+
+            if (i == 8) {
+                nome = ler.lerString("ISBN do livro");
+                Livro livro = livros.BuscarISBN(nome);
+                if (livro == null) {
+                    System.out.println("Livro não encontrado");
+                } else {
+                    i = ler.whileOpcao("1 - Atualizar quantidade\n2 - Mudar preço", 1, 2);
+                    if (i == 2) {
+                        preco = ler.lerDouble("Novo Preço:");
+                        livro.setPreco(preco);
+                        System.out.println("Nome preço alterado com sucesso");
+                    } else {
+                        quantidade = ler.lerInteiro("Acrescentar quantos livros:");
+                        livro.incrementaQuantidade(quantidade);
+                    }
+                }
+
+            }
+
         } while (i != 0);
     }
 }

@@ -7,20 +7,20 @@ import Livro.Livro;
 public class Cliente extends Pessoa {
 
     private List <Livro> livros = new ArrayList <>(); // livros comprados
-    private int telefone;
+    private String telefone;
 
-    //public boolean emiteNota();
-    //public boolean compra(); 
+    
 
 
-    public Cliente(String nome, String CPF, String dataNasc){
-        super(nome, CPF,dataNasc);      
+    public Cliente(String nome, String CPF, String dataNasc,String telefone){
+        super(nome, CPF,dataNasc);
+        this.telefone = telefone;      
     }
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
@@ -35,7 +35,7 @@ public class Cliente extends Pessoa {
     }
 
     public String toString() {
-        String b  = super.toString()+"\nTelefone:"+getTelefone();
+        String b  = super.toString()+"\nTelefone:"+getTelefone()+'\n';
         System.out.println("Livros comprados por : "+getNome()+"\n");
         for (Livro livro : livros) {
 
