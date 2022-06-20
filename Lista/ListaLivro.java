@@ -38,20 +38,6 @@ public class ListaLivro implements Cloneable {
         qualquer.addLivro(livro);
     }
 
-    private void livrosVazios(Livro qualquer) {
-        if (qualquer.getQuantidade() == 0) {
-            livrosVazios.add(qualquer);
-            livros.remove(qualquer);
-        }
-    }
-
-    private void livrosCompletos(Livro qualquer){
-        if(qualquer.getQuantidade() > 0){
-            livros.add(qualquer);
-            livrosVazios.remove(qualquer);
-        }
-    }
-
     public void BuscarNome(String nome) {
         boolean valor = false;
         for (Livro livro : livros) {
@@ -88,23 +74,10 @@ public class ListaLivro implements Cloneable {
         return valor;
     }
 
-    private Livro BuscarISBNeNulos(String IBSN) {
-        Livro valor = null;
-        for (Livro livro : livros) {
-            if (livro.getISBN().contains(IBSN.toUpperCase())) {
-                valor = livro;
-            }
-        }
-        for (Livro livro : livrosVazios) {
-            if (livro.getISBN().contains(IBSN.toUpperCase())) {
-                valor = livro;
-            }
-        }
-        return valor;
-    }
+    
 
     public String compra(String ISBN, String cpf, int quantidade,Cliente cliente) {
-        Livro livro = BuscarISBNeNulos(ISBN);
+        Livro livro = BuscarISBN(ISBN);
         if (livro == null) 
             return "Livro não encontrado";
         if (cliente == null) 
@@ -112,14 +85,7 @@ public class ListaLivro implements Cloneable {
         if(!livro.decrementarQuantidade(quantidade))
             return "Compra cancelada ,quantidade maior do que no estoque";
         cliente.add(livro );
-        livrosVazios(livro);
         return "Compra realizada com sucesso";
-    }
-
-    public void incrementaQuantidade(Livro livro, int newQuant){
-        livro.incrementaQuantidade(newQuant);
-        livrosCompletos(livro);
-
     }
 
 }

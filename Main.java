@@ -21,7 +21,7 @@ public class Main {
             System.out.println();
 
             i = ler.lerInteiro(
-                    "1 - Cadastrar cliente:\n2 - Procurar cadastro:\n3 - Procurar Livro:\n4 - Buscar autor:\n5 - Comprar Livro:\n6 - Cadastrar Livro:\n7 - Cadastrar autor\n8 - Atualizar Dados Livro:\nOpção:");
+                    "1 - Cadastrar cliente:\n2 - Procurar cadastro:\n3 - Procurar Livro:\n4 - Buscar autor:\n5 - Comprar Livro:\n6 - Cadastrar Livro:\n7 - Cadastrar autor:\n8 - Atualizar Dados Livro:\nOpção:");
 
             if (i == 1) {
 
@@ -88,12 +88,14 @@ public class Main {
 
                     preco = ler.lerDouble("Preço:");
                     boolean valor;
+                    String codigo;
                     System.out.println("1 - Ficção\n2 - Cíentifico");
                     i = ler.whileOpcao("Opção:", 1, 2);
                     if (i == 1) {
                         tipoFicao = ler.lerString("Tipo de ficção: ");
                         descricao = ler.lerString("Descrição: ");
                         Ficcao livro = new Ficcao(nomeLivro, editora, quantidade, preco, autor, tipoFicao, descricao);
+                        codigo = livro.getISBN();
                         valor = livros.add(livro);
                     } else {
                         String esp, orgao, area;
@@ -102,12 +104,13 @@ public class Main {
                         area = ler.lerString("Área:");
                         Cientifico livro = new Cientifico(nomeLivro, editora, quantidade, preco, autor, esp, area,
                                 orgao);
+                        codigo = livro.getISBN();
                         valor = livros.add(livro);
                     }
                     if (valor) {
                         System.out.println("Não cadastrado , livro já existente no acervo\n");
                     } else {
-                        System.out.println("Livro cadastrado com sucesso.\n");
+                        System.out.println("Livro cadastrado com sucesso.Com o ISBN:"+codigo+"\n");
                     }
 
                 }
@@ -134,19 +137,20 @@ public class Main {
             }
 
             if (i == 8) {
-                nome = ler.lerString("ISBN do livro");
+                nome = ler.lerString("ISBN do livro:");
                 Livro livro = livros.BuscarISBN(nome);
                 if (livro == null) {
-                    System.out.println("Livro não encontrado");
+                    System.out.println("Livro não encontrado.\n");
                 } else {
-                    i = ler.whileOpcao("1 - Atualizar quantidade\n2 - Mudar preço", 1, 2);
+                    i = ler.whileOpcao("1 - Atualizar quantidade\n2 - Mudar preço\nOpção:", 1, 2);
                     if (i == 2) {
                         preco = ler.lerDouble("Novo Preço:");
                         livro.setPreco(preco);
-                        System.out.println("Nome preço alterado com sucesso");
+                        System.out.println("Novo preço alterado com sucesso");
                     } else {
                         quantidade = ler.lerInteiro("Acrescentar quantos livros:");
                         livro.incrementaQuantidade(quantidade);
+                        System.out.println("Adicionada com sucesso.\n");
                     }
                 }
 
