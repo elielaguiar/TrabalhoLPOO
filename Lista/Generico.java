@@ -1,14 +1,10 @@
 package Lista;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import Auxiadores.Leitura;
-import Auxiadores.Leitura.*;
-import Pessoa.Autor;
 import Pessoa.Pessoa;
 
-public class Generico {
+abstract public class Generico {
     public boolean compara(String cpf, List lista) {
         boolean valor = false;
         List<Pessoa> lista1 = lista;
@@ -22,13 +18,28 @@ public class Generico {
     public void Buscar(String nome, List lista) {
         boolean valor = false;
         List<Pessoa> lista1 = lista;
-        for (Pessoa autor : lista1) {
-            if (autor.getNome().toUpperCase().contains(nome.toUpperCase())) {
-                System.out.println(autor.toString());
+        for (Pessoa pessoa : lista1) {
+            if (pessoa.getNome().contains(nome.toUpperCase())) {
+                System.out.println(pessoa);
                 valor = true;
             }
         }
         if (!valor)
-            System.out.println("Nenhum registro,encontrado");
+            System.out.println("Nenhum registro encontrado.\n");
     }
+
+    public void BuscarCPF(String cpf,List lista) {
+        boolean valor = false;
+        List<Pessoa> lista1 = lista;
+        for (Pessoa pessoa : lista1) {
+            if (pessoa.getCPF().contains(cpf)) {
+                System.out.println(pessoa);
+                valor = true;
+            }
+            if (!valor)
+                System.out.println("Nenhum registro encontrado.\n");
+        }
+    }
+
+    
 }

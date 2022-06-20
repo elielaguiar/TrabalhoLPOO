@@ -12,36 +12,35 @@ public class Main {
         ListaLivro livros = new ListaLivro();
         Cliente cliente;
         Autor autor;
-        int i = 0, quantidade;
+        int i = 0, quantidade,cod;
         double preco;
 
-        String nome, cpf, nasc, genero, cod, nomeLivro, editora, tipoFicao, descricao, telefone;
+        String nome, cpf, nasc, genero, nomeLivro, editora, tipoFicao, descricao, telefone;
 
         do {
             System.out.println();
 
             i = ler.lerInteiro(
-                    "1 - Cadastrar cliente:\n2 - Procurar cadastro:\n3-Procurar Livro:\n4-Buscar autor:\n5-Comprar Livro:\n6-Cadastrar Livro:\n7- Cadastrar autor\n8 - Atualizar Dados Livro:\nOpção:");
+                    "1 - Cadastrar cliente:\n2 - Procurar cadastro:\n3 - Procurar Livro:\n4 - Buscar autor:\n5 - Comprar Livro:\n6 - Cadastrar Livro:\n7 - Cadastrar autor\n8 - Atualizar Dados Livro:\nOpção:");
 
             if (i == 1) {
 
                 cpf = ler.validaCpf("CPF:");
                 if (clientes.compara(cpf))
-                    System.out.println("Cliente já cadastrado");
+                    System.out.println("Cliente já cadastrado.\n");
                 else {
                     nome = ler.lerString("Nome:");
-                    nasc = ler.lerString("Data de nascimento");
-                    telefone = ler.lerString("Telefone");
+                    nasc = ler.lerString("Data de nascimento: ");
+                    telefone = ler.lerString("Telefone: ");
                     cliente = new Cliente(nome, cpf, nasc, telefone);
                     clientes.add(cliente);
+                    System.out.println("Usuário Cadastrado com sucesso!\n");
                 }
-
             }
-            ;
             if (i == 2) {
-                nome = ler.lerString("Nome:");
+                nome = ler.lerString("Nome: ");
                 if (nome == "") {
-                    cpf = ler.validaCpf("CPF:");
+                    cpf = ler.validaCpf("CPF: ");
                     clientes.BuscarCPF(cpf);
 
                 } else {
@@ -78,37 +77,37 @@ public class Main {
                 System.out.println(livros.compra(nome, cpf, quantidade, cliente));
             }
             if (i == 6) {
-                cod = ler.lerString("Código do autor:");
+                cod = ler.lerInteiro("Código do autor:");
                 autor = autores.BuscarCod(cod);
                 if (autor == null) {
-                    System.out.println("Autor não encontrado");
+                    System.out.println("Autor não encontrado.\n");
                 } else {
-                    nomeLivro = ler.lerString("Nome do livro");
-                    editora = ler.lerString("Editora");
-                    quantidade = ler.lerInteiro("Quantidade");
+                    nomeLivro = ler.lerString("Nome do livro:");
+                    editora = ler.lerString("Editora:");
+                    quantidade = ler.lerInteiro("Quantidade:");
 
                     preco = ler.lerDouble("Preço:");
                     boolean valor;
                     System.out.println("1 - Ficção\n2 - Cíentifico");
-                    i = ler.whileOpcao("Opção", 1, 2);
+                    i = ler.whileOpcao("Opção:", 1, 2);
                     if (i == 1) {
-                        tipoFicao = ler.lerString("Tipo de ficção");
-                        descricao = ler.lerString("Descrição");
+                        tipoFicao = ler.lerString("Tipo de ficção: ");
+                        descricao = ler.lerString("Descrição: ");
                         Ficcao livro = new Ficcao(nomeLivro, editora, quantidade, preco, autor, tipoFicao, descricao);
                         valor = livros.add(livro);
                     } else {
                         String esp, orgao, area;
-                        esp = ler.lerString("Especialidade:");
-                        orgao = ler.lerString("Orgão autorizado:");
-                        area = ler.lerString("Area:");
+                        esp = ler.lerString("Especialidade: ");
+                        orgao = ler.lerString("Órgão autorizado: ");
+                        area = ler.lerString("Área:");
                         Cientifico livro = new Cientifico(nomeLivro, editora, quantidade, preco, autor, esp, area,
                                 orgao);
                         valor = livros.add(livro);
                     }
                     if (valor) {
-                        System.out.println("Não cadastrado , livro já existente no acervo");
+                        System.out.println("Não cadastrado , livro já existente no acervo\n");
                     } else {
-                        System.out.println("Livro cadastrado com sucesso");
+                        System.out.println("Livro cadastrado com sucesso.\n");
                     }
 
                 }
@@ -117,19 +116,20 @@ public class Main {
             if (i == 7) {
                 cpf = ler.validaCpf("CPF:");
                 if (autores.compara(cpf)) {
-                    System.out.println("Autor já cadastrado");
+                    System.out.println("Autor já cadastrado.\n");
                 } else {
                     Cliente aux = clientes.retornaCliente(cpf);
                     if (aux == null) {
                         nome = ler.lerString("Nome:");
-                        nasc = ler.lerString("Data de nascimento");
-                        telefone = ler.lerString("Telefone");
+                        nasc = ler.lerString("Data de nascimento:");
+                        telefone = ler.lerString("Telefone:");
                         aux = new Cliente(nome, cpf, nasc, telefone);
                         clientes.add(aux);
                     }
-                    genero = ler.lerString("Genero Literário");
+                    genero = ler.lerString("Gênero:");
                     autor = new Autor(aux, genero);
-                    autores.add(autor);
+                    cod = autores.add(autor);
+                    System.out.println("Autor cadastrado com sucesso.Código do autor :"+cod+"\n");
                 }
             }
 

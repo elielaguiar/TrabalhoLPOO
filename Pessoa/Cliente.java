@@ -9,9 +9,6 @@ public class Cliente extends Pessoa {
     private List <Livro> livros = new ArrayList <>(); // livros comprados
     private String telefone;
 
-    
-
-
     public Cliente(String nome, String CPF, String dataNasc,String telefone){
         super(nome, CPF,dataNasc);
         this.telefone = telefone;      

@@ -22,6 +22,6 @@ public class Ficcao  extends Livro{
 
     public String getFicTecnica() {
         return super.getFicTecnica()
-        +"\nDescrição:"+getDescricao()+"\nGênero:"+getGenero();
+        +"\nDescrição:"+getDescricao()+"\nGênero:"+getGenero()+"\n";
     }
 }

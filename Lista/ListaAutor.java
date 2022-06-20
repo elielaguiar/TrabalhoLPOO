@@ -8,10 +8,10 @@ import Pessoa.Autor;
 public class ListaAutor extends Generico{
 
     private List<Autor> autores = new ArrayList<Autor>();
-    private Autor aux;
 
-    public void add(Autor obj) {
+    public int add(Autor obj) {
         autores.add(obj);
+        return obj.getCod();
     }
 
    public boolean compara(String cpf) {
@@ -20,28 +20,16 @@ public class ListaAutor extends Generico{
 
    public void Buscar(String nome) {
        super.Buscar(nome, autores);
+       
    }
 
-    public void BuscarCPF(String cpf) {
-        boolean valor = false;
-        for (Autor autor : autores) {
-            if (autor.getCPF().contains(cpf)) {
-                System.out.println(autor);
-                List<Livro> livros = autor.getLivrospublicados();
-            for (Livro livro : livros) {
-                System.out.println(livro.getFicTecnica());
-            }
-                valor = true;
-            }
-        }
-        if (!valor) {
-            System.out.println("Nenhum registro encontrado");
-        }
-    }
+   public void BuscarCPF(String cpf) {
+       super.BuscarCPF(cpf, autores);
+   }
 
-    public Autor BuscarCod(String cod){
+    public Autor BuscarCod(int cod){
         for (Autor autor : autores) {
-            if(autor.getCod().contains(cod))
+            if(autor.getCod() == cod)
                 return autor;
         }
         return null;

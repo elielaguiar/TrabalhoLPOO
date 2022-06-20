@@ -3,7 +3,6 @@ package Auxiadores;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Livro.Livro;
 
 public class Leitura {
     public int lerInteiro(String msn) {
@@ -19,7 +18,7 @@ public class Leitura {
                 }
                 ok = true;
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Aceitamos apenas números inteiros ");
+                System.out.println("Aceitamos apenas números inteiros.\n");
             } catch (Excecoes e) {
                 System.out.println(e.ValoresNegativos());
             }
@@ -64,10 +63,10 @@ public class Leitura {
                     Double.parseDouble(cpf);
                     condicao = true;
                 } catch (NumberFormatException e) {
-                    System.out.println("Parâmetro invalido,apenas números");
+                    System.out.println("Parâmetro inválido,apenas números");
                 }
             } else {
-                System.out.println("Número do tamanho de padrão");
+                System.out.println("Digite CPF válido");
             }
         }
         return cpf;

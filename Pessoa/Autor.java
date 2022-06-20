@@ -11,7 +11,7 @@ public class Autor extends Pessoa {
     private String tipoGenero;
     private List<Livro> livrospublicados = new ArrayList<>();
     private static int id  = 1000;
-    private String  cod ;
+    private int  cod ;
 
     public Autor(String nome, String CPF, String tipoGenero,String nasc){
         super(nome, CPF,nasc);
@@ -36,17 +36,21 @@ public class Autor extends Pessoa {
     }
 
     private void setId() {
-       this.cod = Integer.toString(id);
+       this.cod = id;
        id ++;
     }
 
-    public  String getCod() {
+    public  int getCod() {
         return cod;
     }
 
    
     public String toString() {
-        return super.toString()+"\nGênero:"+getGenero()+"\nCódigo:"+getCod();
+        System.out.println("Livros escritos");
+        for (Livro livro : livrospublicados) {
+            System.out.println(livro.getFicTecnica());
+        }
+        return super.toString()+"\nGênero:"+getGenero()+"\nCódigo:"+getCod()+"\n";
     }
 
     public void addLivro(Livro qualquer){

@@ -55,10 +55,10 @@ abstract public class Livro {
     }
 
     public String getFicTecnica(){
-        return "Nome:"+getNome()+"\nISBN:"+getISBN()+"\nEditora:"+editora+"\nDisponível:"+this.quantidade+" em estoque";
+        return "Nome:"+getNome()+"\nISBN:"+getISBN()+"\nEditora:"+editora+"\nDisponível:"+this.quantidade+" em estoque.\n";
     }
     public String getFicTecnicaBusca(){
-        return "Nome:"+getNome()+"\nISBN:"+getISBN()+"\nEditora:"+editora+"\nAutor:"+getAutor().getNome();
+        return "Nome:"+getNome()+"\nISBN:"+getISBN()+"\nEditora:"+editora+"\nAutor:"+getAutor().getNome()+".\n";
     }
 
 

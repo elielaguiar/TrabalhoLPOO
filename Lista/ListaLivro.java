@@ -61,7 +61,7 @@ public class ListaLivro implements Cloneable {
             }
         }
         if (!valor) {
-            System.out.println("Nenhum cadastro encontrado");
+            System.out.println("Nenhum cadastro encontrado.\n");
         }
 
     }
@@ -74,7 +74,7 @@ public class ListaLivro implements Cloneable {
             }
         }
         if (!valor) {
-            System.out.println("Nenhum cadastro encontrado");
+            System.out.println("Nenhum cadastro encontrado.\n");
         }
     }
 
@@ -88,7 +88,7 @@ public class ListaLivro implements Cloneable {
         return valor;
     }
 
-    public Livro BuscarISBNeNulos(String IBSN) {
+    private Livro BuscarISBNeNulos(String IBSN) {
         Livro valor = null;
         for (Livro livro : livros) {
             if (livro.getISBN().contains(IBSN.toUpperCase())) {
@@ -104,7 +104,7 @@ public class ListaLivro implements Cloneable {
     }
 
     public String compra(String ISBN, String cpf, int quantidade,Cliente cliente) {
-        Livro livro = BuscarISBN(ISBN);
+        Livro livro = BuscarISBNeNulos(ISBN);
         if (livro == null) 
             return "Livro não encontrado";
         if (cliente == null) 
