@@ -79,13 +79,13 @@ public class ListaLivro implements Cloneable {
     public String compra(String ISBN, String cpf, int quantidade,Cliente cliente) {
         Livro livro = BuscarISBN(ISBN);
         if (livro == null) 
-            return "Livro não encontrado";
+            return "Livro não encontrado.";
         if (cliente == null) 
-            return "Cliente não encontrado";
+            return "Cliente não encontrado.";
         if(!livro.decrementarQuantidade(quantidade))
-            return "Compra cancelada ,quantidade maior do que no estoque";
+            return "Compra cancelada ,quantidade maior do que no estoque. ";
         cliente.add(livro );
-        return "Compra realizada com sucesso";
+        return "Compra realizada com sucesso!\n";
     }
 
 }

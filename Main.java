@@ -70,10 +70,10 @@ public class Main {
             }
 
             if (i == 5) {
-                nome = ler.lerString("ISBN do livro");
-                cpf = ler.validaCpf("CPF");
+                nome = ler.lerString("ISBN do livro: ");
+                cpf = ler.validaCpf("CPF: ");
                 cliente = clientes.retornaCliente(cpf);
-                quantidade = ler.lerInteiro("Quantidade desejada");
+                quantidade = ler.lerInteiro("Quantidade desejada: ");
                 System.out.println(livros.compra(nome, cpf, quantidade, cliente));
             }
             if (i == 6) {
@@ -110,7 +110,7 @@ public class Main {
                     if (valor) {
                         System.out.println("Não cadastrado , livro já existente no acervo\n");
                     } else {
-                        System.out.println("Livro cadastrado com sucesso.Com o ISBN:"+codigo+"\n");
+                        System.out.println("Livro cadastrado com sucesso. Com o ISBN: "+codigo+"\n");
                     }
 
                 }
@@ -132,7 +132,7 @@ public class Main {
                     genero = ler.lerString("Gênero:");
                     autor = new Autor(aux, genero);
                     cod = autores.add(autor);
-                    System.out.println("Autor cadastrado com sucesso.Código do autor :"+cod+"\n");
+                    System.out.println("Autor cadastrado com sucesso. Código do autor: "+cod+"\n");
                 }
             }
 

@@ -46,7 +46,7 @@ public class Autor extends Pessoa {
 
    
     public String toString() {
-        System.out.println("Livros escritos");
+        System.out.println("Livros escritos: ");
         for (Livro livro : livrospublicados) {
             System.out.println(livro.getFicTecnica());
         }
